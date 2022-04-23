@@ -5,6 +5,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const PORT = process.env.PORT || 3001;
 
+require('./config/database.js');
+
 const app = express();
 
 app.use(logger('dev'));
