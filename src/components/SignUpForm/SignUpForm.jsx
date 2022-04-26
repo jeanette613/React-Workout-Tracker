@@ -14,9 +14,17 @@ export default class SignUpForm extends Component {
 
     }
 
-    handleSubmit = (evt) => {
+    handleSubmit = async (evt) => {
         evt.preventDefault();
-        alert(JSON.stringify(this.state))
+        try {
+            const formData = { ...this.state };
+            delete formData.error;
+            delete formData.confirm;
+            //        const user = await SignUp(formData)
+
+        } catch (error) {
+            this.setState({ error: "Unable to Sign Up New User" })
+        }
     }
 
     render() {
