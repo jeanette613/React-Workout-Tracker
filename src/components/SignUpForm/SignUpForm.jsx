@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { signUp } from "../../utilities/users-api";
 
 export default class SignUpForm extends Component {
     state = {
@@ -20,7 +21,7 @@ export default class SignUpForm extends Component {
             const formData = { ...this.state };
             delete formData.error;
             delete formData.confirm;
-            //        const user = await SignUp(formData)
+            const user = await signUp(formData)
 
         } catch (error) {
             this.setState({ error: "Unable to Sign Up New User" })

@@ -1,5 +1,3 @@
-import { application } from "express";
-
 //This is the bast path of the Express
 const BASE_URL = '/api/users';
 
@@ -13,7 +11,11 @@ export async function signUp(userData) {
         },
         body: JSON.stringify(userData)
     });
-
+    if (res.ok) {
+        return res.json();
+    } else {
+        throw new Error('Invalid Sign Up')
+    }
 }
 
 
