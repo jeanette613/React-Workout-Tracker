@@ -17,6 +17,10 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 //This "statics" the build folder so that Express knows what folder to serve
 app.use(express.static(path.join(__dirname, 'build')));
 
+//api (this style of file naming is a naming convention)
+app.use('/api/users', require('./routes/api/users'))
+
+
 //catch all route mount all other api routes before this
 // to return the index.html on all non-AJAX requests
 app.get('/*', function (req, res) {
