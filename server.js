@@ -1,10 +1,10 @@
-require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const PORT = process.env.PORT || 3001;
 
+require('dotenv').config();
 require('./config/database.js');
 
 const app = express();
@@ -17,8 +17,11 @@ app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 //This "statics" the build folder so that Express knows what folder to serve
 app.use(express.static(path.join(__dirname, 'build')));
 
+//check for token and create req.user (no path becuase it will run in every path)
+app.use(require('./config/checkToken'));
+
 //api (this style of file naming is a naming convention)
-app.use('/api/users', require('./routes/api/users'))
+app.use('/api/users', require('./routes/api/users'));
 
 
 //catch all route mount all other api routes before this

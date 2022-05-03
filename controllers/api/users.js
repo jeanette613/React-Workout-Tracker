@@ -1,19 +1,59 @@
 const User = require('../../models/User')
+const jwt = require('jsonwebtoken');
+//const bcrypt = require('bcrypt');
 
-const create = (req, res, next) => {
+function checkToken(req, res) {
+    console.log('req.user', req.user);
+    res.status(200).json(req.exp);
+}
+
+async function login(req, res) {
     try {
-        const createdUser = await User.create(req.body)
-        res.status(200).json({
-            user: {
-                name: createdUser.name,
-                email: createdUser.email
-            }
-        })
-    } catch (error) {
-        res.staus(400).json({ message: error.mesage })
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) throw new Error();
+        //        const match = await bcrypt.compare(req.body.password, user.password);
+        //        if (!match) throw new Error();
+        res.status(200).json(createJWT(user));
+    } catch {
+        res.status(400).json('Bad Credentials');
     }
 }
 
-module.exports = {
-    create
+async function create(req, res) {
+    try {
+        const user = await User.create(req.body);
+        const token = createJWT(user);
+        res.status(200).json(token);
+    } catch (e) {
+        res.status(400).json(e);
+    }
 }
+
+function createJWT(user) {
+    return jwt.sign(
+        { user },
+        process.env.SECRET,
+        { expiresIN: '24h' }
+    );
+}
+
+//Prev create function
+// const create = (req, res, next) => {
+//     try {
+//         const createdUser = await User.create(req.body)
+//         res.status(200).json({
+//             user: {
+//                 name: createdUser.name,
+//                 email: createdUser.email
+//             }
+//         })
+//     } catch (error) {
+//         res.staus(400).json({ message: error.mesage })
+//     }
+// }
+
+module.exports = {
+    create,
+    login,
+    checkToken
+};
