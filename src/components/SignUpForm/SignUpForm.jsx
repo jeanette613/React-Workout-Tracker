@@ -10,7 +10,7 @@ export default class SignUpForm extends Component {
         error: ''
     }
 
-    handleChange = (evt) => {
+    handleChange = async (evt) => {
         this.setState({ ...this.state, [evt.target.name]: evt.target.value, error: '' })
 
     }
@@ -22,11 +22,11 @@ export default class SignUpForm extends Component {
             delete formData.error;
             delete formData.confirm;
             const user = await signUp(formData)
-
-        } catch (error) {
+            this.props.setUser(user);
+        } catch {
             this.setState({ error: "Unable to Sign Up New User" })
         }
-    }
+    };
 
     render() {
         const disable = this.state.password !== this.state.confirm;

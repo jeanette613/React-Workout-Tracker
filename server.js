@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const PORT = process.env.PORT || 3001;
+
 
 require('dotenv').config();
 require('./config/database.js');
@@ -29,6 +29,8 @@ app.use('/api/users', require('./routes/api/users'));
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, function () {
     console.log(`Express app running on port ${PORT}`)
