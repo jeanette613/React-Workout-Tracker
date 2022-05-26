@@ -1,7 +1,12 @@
 import SignUpForm from "../components/SignUpForm/SignUpForm";
-export default function AuthPage(props) {
+import { useState } from "react"
+
+export default function AuthPage({ setUser }) {
+    //    const [showSignUp, setShowSignUp] = useState(falsey)
     return (<main>
         <h1>Auth Page PlaceHolder</h1>
-        <SignUpForm />
+
+        <SignUpForm setUser={setUser} />
+
     </main>)
 }

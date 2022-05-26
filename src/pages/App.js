@@ -14,7 +14,7 @@ function App() {
           <Routes>
           </Routes>
           :
-          <AuthPage />
+          <AuthPage setUser={setUser} />
       }
     </main >
   );
