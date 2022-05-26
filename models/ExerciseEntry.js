@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const exerciseSchema = require('./Exercises');
+const exerciseSchema = require('./Exercise');
 
 const exerciseEntrySchema = new Schema({
     date: {
@@ -10,6 +10,7 @@ const exerciseEntrySchema = new Schema({
         minlength: 6
     },
     exercise: exerciseSchema
+    // Do I pull from mongoose (like in collab project or just call Schema like cafe? [{ type: mongoose.Schema.Types.ObjectId, ref: 'Exercise' }]
 
 });
 

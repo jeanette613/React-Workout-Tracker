@@ -13,4 +13,12 @@ router.post('/login', userCtrl.login);
 //GET /api.users/check-token
 router.get('/check-token', ensureLoggedIn, userCtrl.checkToken);
 
+//Delete
+router.delete('/:id', userCtrl.remove);
+
+//show
+router.get('/:id', userCtrl.show);
+
+module.exports = router;
+
 module.exports = router;
