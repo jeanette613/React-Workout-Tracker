@@ -33,27 +33,28 @@ function createJWT(user) {
     return jwt.sign(
         { user },
         process.env.SECRET,
-        { expiresIN: '24h' }
     );
 }
 
-//Prev create function
-// const create = (req, res, next) => {
-//     try {
-//         const createdUser = await User.create(req.body)
-//         res.status(200).json({
-//             user: {
-//                 name: createdUser.name,
-//                 email: createdUser.email
-//             }
-//         })
-//     } catch (error) {
-//         res.staus(400).json({ message: error.mesage })
-//     }
-// }
+
+async function remove(req, res) {
+    try {
+        User.findByIdAndDelete(req.params.id, (err) => {
+            if (err) {
+                res.status(400).json(err)
+            } else {
+                res.status(200).json({ message: "User Removed" })
+            }
+        })
+    } catch (e) {
+        res.stauts(400).json(e);
+    }
+}
+
 
 module.exports = {
     create,
     login,
-    checkToken
+    checkToken,
+    remove
 };

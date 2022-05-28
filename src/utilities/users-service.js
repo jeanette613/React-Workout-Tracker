@@ -24,7 +24,7 @@ export function getToken() {
 
 export function getUser() {
     const token = getToken();
-    return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+    return token ? JSON.parse(window.atob(token.split('.')[1])).user : null;
 }
 
 export function logOut() {

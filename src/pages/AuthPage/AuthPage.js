@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Component } from "react";
 import { signUp } from "../../utilities/users-service";
 
@@ -23,7 +24,9 @@ export default class SignUpForm extends Component {
             delete formData.confirm;
             const user = await signUp(formData)
             this.props.setUser(user);
-        } catch {
+            localStorage.setItem('token', user)
+            window.location.reload(false);
+        } catch (err) {
             this.setState({ error: "Unable to Sign Up New User" })
         }
     };

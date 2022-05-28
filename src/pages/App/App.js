@@ -1,7 +1,6 @@
-import '../App.css';
+import './App.css'
 import { useState } from 'react';
-import AuthPage from './AuthPage';
-import logo from '../logo.svg';
+import AuthPage from '../AuthPage/AuthPage'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userCtrl = require('../../controllers/api/users');
+const userCtrl = require('../../controllers/api/userCtrl');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 
@@ -16,9 +16,8 @@ router.get('/check-token', ensureLoggedIn, userCtrl.checkToken);
 //Delete
 router.delete('/:id', userCtrl.remove);
 
-//show
-router.get('/:id', userCtrl.show);
+// //show
+// router.get('/:id', userCtrl.show);
 
 module.exports = router;
 
-module.exports = router;
