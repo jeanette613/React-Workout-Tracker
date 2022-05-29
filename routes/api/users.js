@@ -14,7 +14,7 @@ router.post('/login', userCtrl.login);
 router.get('/check-token', ensureLoggedIn, userCtrl.checkToken);
 
 //Delete
-router.delete('/:id', userCtrl.remove);
+//router.delete('/:id', userCtrl.remove);
 
 // //show
 // router.get('/:id', userCtrl.show);
